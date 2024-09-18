@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# JavaScript Quiz Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Overview
+This is a JavaScript Quiz Application built using React, Axios, Material-UI, and React-Icons. The app fetches quiz questions from a backend API and allows users to submit their answers, receive feedback, and track their scores. 
 
-## Available Scripts
 
-In the project directory, you can run:
+### UI
+![image](https://github.com/user-attachments/assets/40916b78-2b5b-4832-9b63-c2440129e6c0)
 
-### `npm start`
+![image](https://github.com/user-attachments/assets/5df35eac-bf84-430f-9c28-5830cdabe2f4)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Timed quiz with each question having 20 seconds to answer.
+- A total quiz time of 60 seconds.
+- Displays feedback on whether the answer is correct or incorrect.
+- Shows the correct answer after submitting.
+- A "Skip" button to skip the current question.
+- Restart option after the quiz ends.
+- Score calculation and grade display at the end of the quiz.
 
-### `npm test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React**: Frontend framework.
+- **Axios**: For making API requests.
+- **Material-UI**: UI components.
+- **React-Icons**: Icons used for the timer display.
 
-### `npm run build`
+## Components
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `Quiz.js`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This component handles the entire quiz functionality including fetching questions, managing timers, handling user input, and displaying feedback.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Key States:
 
-### `npm run eject`
+- `questions`: Stores the fetched quiz questions.
+- `currentQuestionIndex`: Tracks the current question number.
+- `timeLeft`: Timer for each individual question (20 seconds).
+- `totalTimeLeft`: Timer for the entire quiz (60 seconds).
+- `userAnswer`: Stores the current user's answer.
+- `score`: Tracks the user's score.
+- `quizOver`: Boolean to check if the quiz is over.
+- `feedback`: Stores feedback about the user's answer (correct/incorrect).
+- `errorMessage`: Displays any validation errors.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Key Functions:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `handleNextQuestion`: Advances to the next question when time runs out or an answer is submitted.
+- `handleAnswerSubmit`: Submits the answer and shows feedback (correct/incorrect).
+- `handleSkipQuestion`: Skips the current question and moves to the next.
+- `handleStartQuizAfresh`: Restarts the quiz after it's over.
+- `getGrade`: Calculates the grade based on the final score.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Installation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/your-repository/quiz-app.git
+    ```
 
-## Learn More
+2. Install the required dependencies:
+    ```bash
+    npm install
+    ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Start the development server:
+    ```bash
+    npm start
+    ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Ensure that your backend API is running to serve quiz questions and accept answers.
 
-### Code Splitting
+## API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- `GET /api/questions`: Fetches the quiz questions from the backend.
+- `POST /api/answer`: Submits the user's answer and returns whether it is correct along with the correct answer.
 
-### Analyzing the Bundle Size
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. After starting the app, the quiz will display the first question along with a countdown timer.
+2. Enter your answer in the text field and click the "Answer" button or click "Skip" to move to the next question.
+3. Feedback will be shown after each question, indicating whether your answer was correct or incorrect.
+4. The quiz ends when either the time runs out or all questions are answered.
+5. Your final score and grade will be displayed at the end of the quiz, and you can restart the quiz by clicking "Start Quiz Afresh."
